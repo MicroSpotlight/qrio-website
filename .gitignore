@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.DS_Store
+playwright-report/
+test-results/
+qa/screenshots/*
+!qa/screenshots/home-1024x1792-final-approved.png
+*.log
