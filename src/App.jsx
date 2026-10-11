@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  CaretDown,
   CheckCircle,
   ClockCounterClockwise,
   EnvelopeSimple,
+  FileCsv,
+  Infinity as InfinityIcon,
   List,
   LockKey,
+  Palette,
   QrCode,
   Scan,
   ShieldCheck,
@@ -458,6 +462,7 @@ function SiteHeader({ inverse = false }) {
         <Brand inverse={inverse} />
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="/#features">Features</a>
+          <a href="/#pro">Qrio Pro</a>
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
         </nav>
@@ -477,6 +482,7 @@ function SiteHeader({ inverse = false }) {
       {open && (
         <nav className="mobile-nav" aria-label="Mobile navigation">
           <a href="/#features" onClick={() => setOpen(false)}>Features</a>
+          <a href="/#pro" onClick={() => setOpen(false)}>Qrio Pro</a>
           <a href="/privacy/" onClick={() => setOpen(false)}>Privacy</a>
           <a href="/terms/" onClick={() => setOpen(false)}>Terms</a>
           <AppStoreBadge />
@@ -494,6 +500,7 @@ function Hero() {
       <SiteHeader inverse />
       <div className="hero-inner">
         <div className="hero-copy">
+          <p className="hero-eyebrow">QR and barcode utility for iPhone</p>
           <h1 id="hero-title">Qrio</h1>
           <p className="hero-tagline">
             Scan instantly.<br />
@@ -504,16 +511,17 @@ function Hero() {
             Qrio is the fast and reliable iOS app to scan QR codes and barcodes,
             generate custom codes, and manage your history.
           </p>
-          <AppStoreBadge />
-          <a className="feature-jump" href="#features">
-            See all features <ArrowRight aria-hidden="true" />
-          </a>
+          <div className="hero-actions">
+            <AppStoreBadge />
+            <a className="feature-jump" href="#features">
+              Explore Qrio <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
         </div>
 
-        <div className="hero-devices" aria-label="Qrio app screenshots">
+        <div className="hero-showcase" aria-label="Qrio app screenshots">
           <img className="hero-device hero-device-scan" src="/assets/qrio-scan.png" alt="Qrio camera scanner" />
           <img className="hero-device hero-device-home" src="/assets/qrio-home.png" alt="Qrio home screen" />
-          <img className="hero-device hero-device-generate" src="/assets/qrio-generate.png" alt="Qrio code generator" />
         </div>
       </div>
     </section>
@@ -529,6 +537,7 @@ const features = [
     alt: "Qrio camera scan interface",
     accent: "blue",
     position: "scan",
+    label: "Scan",
   },
   {
     title: "Create custom QR codes",
@@ -538,6 +547,7 @@ const features = [
     alt: "A QR code generated in Qrio",
     accent: "green",
     position: "generate",
+    label: "Create",
   },
   {
     title: "Find it in your history",
@@ -547,6 +557,7 @@ const features = [
     alt: "Qrio scan history",
     accent: "ink",
     position: "history",
+    label: "Keep",
   },
 ];
 
@@ -554,6 +565,7 @@ function Features() {
   return (
     <section className="features-section" id="features" aria-labelledby="features-title">
       <div className="section-heading">
+        <span className="section-eyebrow">Built for everyday codes</span>
         <h2 id="features-title">Everything you need. Right at your fingertips.</h2>
         <p>
           Scan with your camera or from photos, create custom codes, and return
@@ -562,23 +574,80 @@ function Features() {
       </div>
 
       <div className="feature-list">
-        {features.map((feature) => {
+        {features.map((feature, index) => {
           const Icon = feature.icon;
           return (
-            <article className="feature-row" key={feature.title}>
-              <div className={`feature-icon is-${feature.accent}`} aria-hidden="true">
-                <Icon weight="regular" />
-              </div>
+            <article
+              className={`feature-row${index % 2 === 1 ? " is-reversed" : ""}`}
+              key={feature.title}
+            >
               <div className="feature-copy">
+                <div className="feature-meta">
+                  <div className={`feature-icon is-${feature.accent}`} aria-hidden="true">
+                    <Icon weight="regular" />
+                  </div>
+                  <span>{String(index + 1).padStart(2, "0")} / {feature.label}</span>
+                </div>
                 <h3>{feature.title}</h3>
                 <p>{feature.copy}</p>
               </div>
-              <div className={`feature-preview is-${feature.position}`}>
+              <figure className={`feature-preview is-${feature.position}`}>
                 <img src={feature.image} alt={feature.alt} />
-              </div>
+              </figure>
             </article>
           );
         })}
+      </div>
+    </section>
+  );
+}
+
+const proBenefits = [
+  {
+    title: "Unlimited local history",
+    copy: "Keep your complete scan and generation history available on your device.",
+    icon: InfinityIcon,
+  },
+  {
+    title: "Advanced QR styles",
+    copy: "Use rounded and circular QR dot styles in addition to the standard square style.",
+    icon: Palette,
+  },
+  {
+    title: "CSV history export",
+    copy: "Export your saved history as a CSV file when you need it elsewhere.",
+    icon: FileCsv,
+  },
+];
+
+function ProSection() {
+  return (
+    <section className="pro-section" id="pro" aria-labelledby="pro-title">
+      <div className="pro-inner">
+        <div className="pro-copy">
+          <span className="pro-eyebrow">Qrio Pro</span>
+          <h2 id="pro-title">More control. One purchase.</h2>
+          <p>
+            Unlock every Pro feature with a one-time, non-consumable App Store
+            purchase. Restore it with the same Apple ID whenever Apple makes the
+            transaction available.
+          </p>
+          <AppStoreBadge />
+        </div>
+        <div className="pro-benefits">
+          {proBenefits.map((benefit) => {
+            const Icon = benefit.icon;
+            return (
+              <div className="pro-benefit" key={benefit.title}>
+                <Icon aria-hidden="true" />
+                <div>
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.copy}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -592,8 +661,9 @@ function PrivacyBand() {
         <div>
           <h2 id="privacy-band-title">Your privacy matters.</h2>
           <p>
-            We&apos;re committed to transparency. Learn how Qrio handles your data
-            in our <a href="/privacy/">Privacy Policy</a>.
+            No account is required. Your codes and history stay on your device;
+            analytics and diagnostics are disclosed in our{" "}
+            <a href="/privacy/">Privacy Policy</a>.
           </p>
         </div>
       </div>
@@ -625,9 +695,38 @@ function HomePage() {
     <main>
       <Hero />
       <Features />
+      <ProSection />
       <PrivacyBand />
       <Footer />
     </main>
+  );
+}
+
+function LegalToc({ title, sections }) {
+  const [open, setOpen] = useState(false);
+  const navId = `${title === "Privacy Policy" ? "privacy" : "terms"}-contents-nav`;
+
+  return (
+    <aside className={`legal-toc${open ? " is-open" : ""}`} aria-label={`${title} contents`}>
+      <span className="legal-toc-label">On this page</span>
+      <button
+        className="legal-toc-toggle"
+        type="button"
+        aria-controls={navId}
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span>On this page</span>
+        <CaretDown aria-hidden="true" />
+      </button>
+      <nav id={navId}>
+        {sections.map((section) => (
+          <a key={section.id} href={`#${section.id}`} onClick={() => setOpen(false)}>
+            {section.title.replace(/^\d+\. /, "")}
+          </a>
+        ))}
+      </nav>
+    </aside>
   );
 }
 
@@ -658,14 +757,7 @@ function LegalPage({ type }) {
       </section>
 
       <div className="legal-layout">
-        <aside className="legal-toc" aria-label={`${title} contents`}>
-          <span>On this page</span>
-          <nav>
-            {sections.map((section) => (
-              <a key={section.id} href={`#${section.id}`}>{section.title.replace(/^\d+\. /, "")}</a>
-            ))}
-          </nav>
-        </aside>
+        <LegalToc title={title} sections={sections} />
 
         <article className="legal-content">
           {sections.map((section) => (
