@@ -14,3 +14,4 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Keep the Qrio visual language restrained and product-led: dark photographic hero, white reading surfaces, blue and green functional accents, and real in-app screenshots.
 - Keep homepage typography on one coherent scale. Secondary product and legal text must remain comfortably readable; do not restore the previous 12px privacy copy or 9px footer copy.
 - Explain Qrio Pro on the homepage using only benefits verified in the iOS source. Do not invent pricing, discounts, subscriptions, or unsupported capabilities.
+- Do not use the empty gray camera state as a primary marketing image or place every product screenshot on the same neutral gray stage. Prefer verified, content-rich app states and feature-specific blue, green, or warm supporting surfaces.

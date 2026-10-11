@@ -6,11 +6,13 @@
 - Scope: implement the P0 and P1 findings from the homepage audit without adding unverified product claims.
 - Final desktop capture: `qa/screenshots/home-desktop-redesign.png` (1440 px viewport).
 - Final mobile capture: `qa/screenshots/home-mobile-redesign.png` (390 px viewport).
-- Rendering engine: Google Chrome 152, the user's configured default browser.
+- Rendering engine: Google Chrome 154, the user's configured default browser.
 
 ## Verified Design Changes
 
 - Rebuilt the hero around one value proposition, two calls to action, and two real product screens; the earlier third overlapping phone was removed.
+- Removed the empty gray camera state from the hero and feature story. The homepage now uses content-rich Home, Generate, and History states that show the product's actual interface and functional color.
+- Replaced the repeated neutral-gray screenshot wells with feature-specific blue, green, and warm surfaces plus a high-contrast device frame, so screenshots read as deliberate product imagery rather than loading placeholders.
 - Expanded the feature area to a 1120 px content width with three alternating 590 px rows and readable 460 px product previews.
 - Added a dedicated Qrio Pro section. Every benefit and purchase statement is traceable to the app source and `docs/content-evidence.md`.
 - Reworked the privacy band and footer so supporting text remains readable instead of being compressed to fit the old reference height.

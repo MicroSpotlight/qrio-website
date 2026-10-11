@@ -520,8 +520,8 @@ function Hero() {
         </div>
 
         <div className="hero-showcase" aria-label="Qrio app screenshots">
-          <img className="hero-device hero-device-scan" src="/assets/qrio-scan.png" alt="Qrio camera scanner" />
-          <img className="hero-device hero-device-home" src="/assets/qrio-home.png" alt="Qrio home screen" />
+          <img className="hero-device hero-device-primary" src="/assets/qrio-home.png" alt="Qrio home screen" />
+          <img className="hero-device hero-device-secondary" src="/assets/qrio-generate.png" alt="Qrio code generator" />
         </div>
       </div>
     </section>
@@ -533,8 +533,8 @@ const features = [
     title: "Scan with speed and precision",
     copy: "Scan QR codes and common barcodes with your camera, or choose a code from your photo library.",
     icon: Scan,
-    image: "/assets/qrio-scan.png",
-    alt: "Qrio camera scan interface",
+    image: "/assets/qrio-home.png",
+    alt: "Qrio home screen with the Scan Code action",
     accent: "blue",
     position: "scan",
     label: "Scan",
